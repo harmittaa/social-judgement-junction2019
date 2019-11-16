@@ -89,6 +89,7 @@ open class StatsFragment : Fragment() {
         barchart!!.getAxisRight().setDrawGridLines(false);
         barchart!!.getAxisLeft().setDrawGridLines(false);
         barchart!!.xAxis.setDrawGridLines(false);
+        barchart!!.zoom(2.0f, 0f, 0f,0f)
 
     }
 

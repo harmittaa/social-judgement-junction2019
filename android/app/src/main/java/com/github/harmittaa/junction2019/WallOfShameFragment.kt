@@ -76,7 +76,7 @@ class WallOfShameFragment : Fragment() {
                 viewType: Int
             ): WallOfShameViewHolder {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.wall_item, parent, false)
+                    .inflate(R.layout.wall_item2, parent, false)
                 val viewHolder = WallOfShameViewHolder(view)
                 viewHolder.setListener(this@WallOfShameFragment)
                 return WallOfShameViewHolder(view)

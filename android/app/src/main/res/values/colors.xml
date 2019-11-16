@@ -8,5 +8,6 @@
     <color name="lighterBlue">#C1D4FD</color>
     <color name="red">#E65F40</color>
     <color name="green">#30D7AE</color>
+    <color name="greenish">#9930D7AE</color>
     <color name="babyblue">#DDEBFD</color>
 </resources>

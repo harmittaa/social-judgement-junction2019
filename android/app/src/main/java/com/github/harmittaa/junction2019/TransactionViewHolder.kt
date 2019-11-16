@@ -74,9 +74,9 @@ class WallOfShameViewHolder(private val wallItem: View) : RecyclerView.ViewHolde
         price.text = "${basket.price} €"
         val location: TextView = wallItem.findViewById(R.id.transaction_location)
         location.text = "${basket.store}"
-        val date: TextView = wallItem.findViewById(R.id.transaction_date)
-        date.text =
-            "${dateTime.dayOfMonth().getAsText()} ${dateTime.monthOfYear().getAsShortText()} "
+        //val date: TextView = wallItem.findViewById(R.id.transaction_date)
+        /*date.text =
+            "${dateTime.dayOfMonth().getAsText()} ${dateTime.monthOfYear().getAsShortText()} "*/
         val cs: ConstraintLayout = wallItem.findViewById(R.id.karma_points)
         val karma = cs.findViewById<TextView>(R.id.karma_points_tv)
 

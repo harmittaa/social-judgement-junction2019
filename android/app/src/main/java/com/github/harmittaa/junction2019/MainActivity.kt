@@ -22,12 +22,21 @@ class MainActivity : AppCompatActivity() {
 
     private val listener = BottomNavigationView.OnNavigationItemSelectedListener {
         when (it.itemId) {
-            R.id.landing -> supportFragmentManager.beginTransaction()
-                .replace(R.id.container, LandingFragment(), "landing").commit()
-            R.id.wall_of_shame -> supportFragmentManager.beginTransaction()
-                .replace(R.id.container, WallOfShameFragment(), "wallofsame").commit()
-            R.id.stats -> supportFragmentManager.beginTransaction()
-                .replace(R.id.container, StatsFragment(), "wallofsame").commit()
+            R.id.landing -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, LandingFragment(), "wallofsame").commit()
+                blockerView.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+            }
+            R.id.wall_of_shame -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, WallOfShameFragment(), "wallofsame").commit()
+                blockerView.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+            }
+            R.id.stats -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, StatsFragment(), "wallofsame").commit()
+                blockerView.setBackgroundColor(resources.getColor(R.color.babyblue))
+            }
 
             else -> Log.d("this", "else")
         }
