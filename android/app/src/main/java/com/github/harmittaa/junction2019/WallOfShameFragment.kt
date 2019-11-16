@@ -90,18 +90,20 @@ class WallOfShameFragment : Fragment() {
     fun onClick(p0: View) {
         val basketPojo = adapter?.getItem(p0.tag as Int)
         Totals.basket = basketPojo!!
+        val id = p0.id
 
-        val mainActivity = activity as MainActivity
-        val fragment = PopupFragment()
-        mainActivity.showFragment(PopupFragment())
-        if (true) {
+        if (id == R.id.middleClicker) {
+            val mainActivity = activity as MainActivity
+            mainActivity.showFragment(PopupFragment())
             return
         }
 
 
-        val updateTo = when (p0.id) {
+        val updateTo = when (id) {
             R.id.thumbs_up -> 1
+            R.id.positiveClicker -> 1
             R.id.thumbs_down -> -1
+            R.id.negativeClicker -> -1
             else -> return
         }
 

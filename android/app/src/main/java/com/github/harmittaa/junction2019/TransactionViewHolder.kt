@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.harmittaa.junction2019.models.Basket
 import com.github.harmittaa.junction2019.models.Totals
 import kotlinx.android.synthetic.main.wall_item.view.*
+import kotlinx.android.synthetic.main.wall_item.view.comment
+import kotlinx.android.synthetic.main.wall_item.view.thumbs_down
+import kotlinx.android.synthetic.main.wall_item.view.thumbs_up
+import kotlinx.android.synthetic.main.wall_item2.view.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 
@@ -51,9 +55,7 @@ class WallOfShameViewHolder(private val wallItem: View) : RecyclerView.ViewHolde
 ), View.OnClickListener {
 
     override fun onClick(p0: View) {
-        val tag = p0.getTag()
         Totals.notifyThis?.onClick(p0)
-        //listener?.onClick(p0)
     }
 
     private var listener: WallOfShameFragment? = null
@@ -61,13 +63,18 @@ class WallOfShameViewHolder(private val wallItem: View) : RecyclerView.ViewHolde
     fun setBasket(basket: Basket, position: Int) {
         Totals.addToTotal(basket.price)
         Totals.addToTotalKarma(basket.karma)
-        val dateTime = DateTime(basket.timestamp * 1000, DateTimeZone.UTC)
         wallItem.thumbs_down.setOnClickListener(this)
         wallItem.thumbs_down.tag = position
         wallItem.thumbs_up.setOnClickListener(this)
         wallItem.thumbs_up.tag = position
         wallItem.comment.setOnClickListener(this)
         wallItem.comment.tag = position
+        wallItem.negativeClicker.tag = position
+        wallItem.negativeClicker.setOnClickListener(this)
+        wallItem.positiveClicker.tag = position
+        wallItem.positiveClicker.setOnClickListener(this)
+        wallItem.middleClicker.tag = position
+        wallItem.middleClicker.setOnClickListener(this)
 
         // "${model.price} €
         val price: TextView = wallItem.findViewById(R.id.transaction_price)

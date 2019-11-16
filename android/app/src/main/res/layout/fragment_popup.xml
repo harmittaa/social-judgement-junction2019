@@ -6,6 +6,13 @@
     android:layout_height="wrap_content"
     android:background="@color/babyblue">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
@@ -55,6 +62,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -72,20 +80,71 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_recycler"
-        android:minHeight="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="100dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/purchase_details"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/purchase_item"
         tools:itemCount="3"
-        />
+        tools:listitem="@layout/purchase_item" />
+
+    <View
+        android:id="@+id/seeeparator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/items_recycler" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/negativewrap"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/reddish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guideline6"
+        app:layout_constraintTop_toBottomOf="@id/seeeparator">
+
+        <ImageView
+            android:id="@+id/thumbs_down"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:tint="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_thumb_down_24px" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/positivewrapper"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/greenish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline6"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seeeparator">
+
+        <ImageView
+            android:id="@+id/thumbs_up"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:tint="@color/green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52"
+            app:srcCompat="@drawable/ic_thumb_up_24px" />
 
 
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
