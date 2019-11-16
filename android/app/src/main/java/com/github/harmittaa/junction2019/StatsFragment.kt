@@ -72,16 +72,24 @@ open class StatsFragment : Fragment() {
             }
             //karmas.add(BarEntry(baskets[x].karma.toFloat(), x.toFloat()))
         }
-        // 48, 215, 174
+
         val dataSet = BarDataSet(prices, "baskets")
         dataSet.setColor(Color.rgb(48, 214, 174))
 
 
         val dataSet2 = BarDataSet(karmas, "karmas")
         dataSet.setColor(Color.rgb(230, 95, 64))
+        dataSet.setDrawValues(false)
+        dataSet2.setDrawValues(false)
 
         val barData = BarData(dataSet, dataSet2)
+        barData.barWidth = 1f
         barchart!!.data = barData
+        barchart!!.axisLeft.setDrawGridLines(false);
+        barchart!!.getAxisRight().setDrawGridLines(false);
+        barchart!!.getAxisLeft().setDrawGridLines(false);
+        barchart!!.xAxis.setDrawGridLines(false);
+
     }
 
     private fun generateBarData(dataSets: Int, range: Float, count: Int): BarData {
