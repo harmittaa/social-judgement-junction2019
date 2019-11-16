@@ -6,7 +6,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.github.harmittaa.junction2019.models.Basket
 import com.github.harmittaa.junction2019.models.Totals
-import kotlinx.android.synthetic.main.wall_item.view.*
 import kotlinx.android.synthetic.main.wall_item.view.comment
 import kotlinx.android.synthetic.main.wall_item.view.thumbs_down
 import kotlinx.android.synthetic.main.wall_item.view.thumbs_up
@@ -19,13 +18,13 @@ class TransactionViewHolder(private val transactionRow: View) : RecyclerView.Vie
     transactionRow
 ) {
 
-    fun setBasket(basket: Basket) {
+    fun setBasket(basket: Basket, position: Int) {
+        transactionRow.tag = position
+        transactionRow.setOnClickListener(Totals.notifyThis2)
         Totals.addToTotal(basket.price)
         Totals.addToTotalKarma(basket.karma)
         val dateTime = DateTime(basket.timestamp * 1000, DateTimeZone.UTC)
-        //Totals.notifyListener()
 
-        // "${model.price} €
         val price: TextView = transactionRow.findViewById(R.id.transaction_price)
         price.text = "${basket.price} €"
         val location: TextView = transactionRow.findViewById(R.id.transaction_location)

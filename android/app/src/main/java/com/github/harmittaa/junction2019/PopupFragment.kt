@@ -36,6 +36,9 @@ class PopupFragment : SuperBottomSheetFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (!Totals.hasVoting) {
+            hideVoting()
+        }
         basketPojo = Totals.basket!!
         setupRecycler()
         setKarma(basketPojo!!.karma)
@@ -45,6 +48,11 @@ class PopupFragment : SuperBottomSheetFragment() {
         negativewrap.setOnClickListener {
             changeKarma(-1)
         }
+    }
+
+    private fun hideVoting() {
+        negativewrap.visibility = View.GONE
+        positivewrapper.visibility = View.GONE
     }
 
     private fun setKarma(toValue: Int) {

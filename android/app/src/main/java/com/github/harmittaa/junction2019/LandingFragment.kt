@@ -6,22 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.github.harmittaa.junction2019.models.Basket
 import com.github.harmittaa.junction2019.models.Totals
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_landing.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 
 
-class LandingFragment : Fragment() {
+class LandingFragment : Fragment(), View.OnClickListener {
     var db: FirebaseFirestore? = null
     private var adapter: FirestoreRecyclerAdapter<Basket, TransactionViewHolder>? = null
     private var userKarma: Long = 0L
@@ -41,6 +38,7 @@ class LandingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Totals.notifyThis2 = this
         populateOveralls()
         setupRecyclerView()
 
@@ -84,12 +82,12 @@ class LandingFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         adapter?.stopListening()
+        Totals.notifyThis2 = null
     }
 
     private fun setupRecyclerView() {
         transactions_list.adapter
         transactions_list.layoutManager = LinearLayoutManager(context!!);
-
 
         val query = db?.collection("baskets")?.orderBy("timestamp", Query.Direction.DESCENDING)
             ?.whereEqualTo("user", userId)
@@ -103,7 +101,7 @@ class LandingFragment : Fragment() {
                 position: Int,
                 model: Basket
             ) {
-                holder.setBasket(model)
+                holder.setBasket(model, position)
             }
 
             override fun onCreateViewHolder(
@@ -112,9 +110,23 @@ class LandingFragment : Fragment() {
             ): TransactionViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.transaction_item, parent, false)
+                view.setOnClickListener(this@LandingFragment)
                 return TransactionViewHolder(view)
             }
         }
         transactions_list.adapter = adapter
+    }
+
+    override fun onClick(view: View?) {
+        val p0 = view!!
+        val basketPojo = adapter?.getItem(p0.tag as Int)
+        Totals.basket = basketPojo!!
+        val basket = adapter?.snapshots?.getSnapshot(p0.tag as Int)
+        Totals.basketDoc = basket
+        Totals.hasVoting = false
+
+        val mainActivity = activity as MainActivity
+        mainActivity.showFragment(PopupFragment())
+        return
     }
 }

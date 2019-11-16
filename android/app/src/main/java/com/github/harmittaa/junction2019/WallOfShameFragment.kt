@@ -96,6 +96,7 @@ class WallOfShameFragment : Fragment() {
         val id = p0.id
 
         if (id == R.id.middleClicker) {
+            Totals.hasVoting = true
             val mainActivity = activity as MainActivity
             mainActivity.showFragment(PopupFragment())
             return
@@ -115,8 +116,6 @@ class WallOfShameFragment : Fragment() {
             db?.collection("baskets")?.document(basket.id)
                 ?.update(mapOf("karma" to (basketPojo!!.karma + updateTo)))
         }
-
-
     }
 
 
