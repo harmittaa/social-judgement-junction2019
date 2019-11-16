@@ -145,6 +145,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@drawable/round_corners_white"
+        android:elevation="8dp"
         app:itemIconTint="@drawable/bottom_nav_selector"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"

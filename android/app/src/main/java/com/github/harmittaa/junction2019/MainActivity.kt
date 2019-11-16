@@ -2,7 +2,6 @@ package com.github.harmittaa.junction2019
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,10 +13,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.github.harmittaa.junction2019.models.Totals
+import com.google.android.material.bottomnavigation.BottomNavigationView.*
 import com.google.firebase.firestore.Query
 import java.math.BigDecimal
 import java.math.RoundingMode
-import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,9 +31,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
         db = FirebaseFirestore.getInstance()
+        bottom_navigation.setOnNavigationItemSelectedListener(listener)
         populateOveralls()
         setupRecyclerView()
         blocker.bringToFront()
+    }
+
+    /*
+            android:id="@+id/action_search"
+        android:icon="@drawable/ic_account_balance_wallet_24px"
+        android:title="search" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_data_usage_24px"
+        android:title="Stats" />
+    <item
+        android:id="@+id/action_navigation"
+
+     */
+    private val listener = OnNavigationItemSelectedListener {
+        when(it.itemId) {
+            R.id.landing -> Log.d("this", "Landing.")
+            R.id.stats -> Log.d("this",  "stats")
+            R.id.wall -> Log.d("this", "wall")
+
+            else -> Log.d("this", "else")
+        }
+        true
     }
 
     private fun populateOveralls() {
