@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -39,13 +40,17 @@ class LandingFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Totals.notifyThis2 = this
+    }
+    override fun onStart() {
+        super.onStart()
         populateOveralls()
         setupRecyclerView()
-
+        adapter?.startListening()
     }
 
     private fun populateOveralls() {
-        //if (!lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {return}
+        val state = lifecycle.currentState
+        if (!state.isAtLeast(Lifecycle.State.CREATED)) {return}
         db?.collection("baskets")?.whereEqualTo("user", userId)?.get()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -74,10 +79,6 @@ class LandingFragment : Fragment(), View.OnClickListener {
             }
     }
 
-    override fun onStart() {
-        super.onStart()
-        adapter?.startListening()
-    }
 
     override fun onStop() {
         super.onStop()
