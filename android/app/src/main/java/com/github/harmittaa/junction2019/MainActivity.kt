@@ -13,6 +13,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.google.firebase.firestore.Query
+import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +27,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         db = FirebaseFirestore.getInstance()
         setupRecyclerView()
+
     }
+
 
     override fun onStart() {
         super.onStart()
@@ -42,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         transactions_list.layoutManager = LinearLayoutManager(this);
 
 
-        val query = db?.collection("baskets")
+        val query = db?.collection("baskets")?.orderBy("timestamp", Query.Direction.DESCENDING)
 
         val options = FirestoreRecyclerOptions.Builder<Basket>()
         var req = options.setQuery(query!!, Basket::class.java).build()
@@ -56,7 +60,10 @@ class MainActivity : AppCompatActivity() {
                 holder.setBasket(model)
             }
 
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
+            override fun onCreateViewHolder(
+                parent: ViewGroup,
+                viewType: Int
+            ): TransactionViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.transaction_item, parent, false)
                 return TransactionViewHolder(view)
@@ -92,5 +99,41 @@ class MainActivity : AppCompatActivity() {
             }
 
 */
+
+    /*
+
+            db!!.collection("baskets")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        val city = document.toObject(Basket::class.java)
+                        Log.d("this", document.id + " => " + document.data)
+                        db!!
+                            .collection("baskets")
+                            .document(document.id)
+                            .update(mapOf<String, Long>("timestamp" to getTimeStamp())).addOnSuccessListener { documentReference ->
+                                Log.d(
+                                    "tag",
+                                    "DocumentSnapshot added with ID: "
+                                )
+                            }
+                            .addOnFailureListener { e -> Log.w("", "Error adding document", e) }
+
+                    }
+
+                } else {
+                    Log.w("this", "Error getting documents.", task.exception)
+                }
+            }
+
+    }
+
+    private fun getTimeStamp(): Long {
+        return 1573800000 + Random.nextLong(10000, 99999)
+        //return "${Random.nextInt(10000, 99999)}"
+    }
+
+     */
 
 }

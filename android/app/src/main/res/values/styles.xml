@@ -12,6 +12,16 @@
         <item name="android:textColor">@color/niceWhite</item>
     </style>
 
+    <style name="MainTextItem">
+        <item name="android:textColor">@color/niceWhite</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="HeaderText">
+        <item name="android:textStyle"></item>
+        <item name="android:textColor">@color/niceWhite</item>
+    </style>
+
 
 
 </resources>

@@ -28,17 +28,31 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
+    <TextView
+        android:id="@+id/RecyclerViewTop"
+        style="@style/MainText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:gravity="bottom"
+        android:paddingTop="25dp"
+        android:text="Transactions"
+        android:textSize="26sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/transactions_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
-        android:background="@drawable/round_corners"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/RecyclerViewTop"
         tools:listitem="@layout/transaction_item" />
 
     <androidx.constraintlayout.widget.Guideline
