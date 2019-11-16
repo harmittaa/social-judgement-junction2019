@@ -23,7 +23,6 @@ import java.math.RoundingMode
 class LandingFragment : Fragment() {
     var db: FirebaseFirestore? = null
     private var adapter: FirestoreRecyclerAdapter<Basket, TransactionViewHolder>? = null
-    private var userId = "AYD1wNUgj31szhrVr1At"
     private var userKarma: Long = 0L
     private var spentBigDecimal: BigDecimal? = null
 
