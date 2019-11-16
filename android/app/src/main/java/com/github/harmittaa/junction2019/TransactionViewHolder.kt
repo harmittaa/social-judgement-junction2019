@@ -87,7 +87,7 @@ class WallOfShameViewHolder(private val wallItem: View) : RecyclerView.ViewHolde
         val cs: ConstraintLayout = wallItem.findViewById(R.id.karma_points)
         val karma = cs.findViewById<TextView>(R.id.karma_points_tv)
 
-        if (basket.karma > 0) {
+        if (basket.karma >= 0) {
             cs.background = wallItem.context.resources.getDrawable(R.drawable.circle_outline_blue)
             karma.text = "${basket.karma}"
         } else {

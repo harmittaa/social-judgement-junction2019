@@ -4,21 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import kotlinx.android.synthetic.main.fragment_popup.*
 import android.content.Context
+import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.harmittaa.junction2019.models.Basket
 import com.github.harmittaa.junction2019.models.Item
 import com.github.harmittaa.junction2019.models.Totals
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class PopupFragment : SuperBottomSheetFragment() {
-    private var basket: Basket? = null
+    private var basketPojo: Basket? = null
     private var shouldSetup = true
+    private var db: FirebaseFirestore? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,25 +30,51 @@ class PopupFragment : SuperBottomSheetFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         shouldSetup = true
+        db = FirebaseFirestore.getInstance()
         return inflater.inflate(R.layout.fragment_popup, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        basket = Totals.basket!!
+        basketPojo = Totals.basket!!
         setupRecycler()
-        if (basket!!.karma < 0) {
+        setKarma(basketPojo!!.karma)
+        positivewrapper.setOnClickListener {
+            changeKarma(1)
+        }
+        negativewrap.setOnClickListener {
+            changeKarma(-1)
+        }
+    }
+
+    private fun setKarma(toValue: Int) {
+        if (toValue < 0) {
             karma_wrapper.background = context!!.getDrawable(R.drawable.round_corners_red)
         } else {
             karma_wrapper.background = context!!.getDrawable(R.drawable.round_corners_green)
         }
-        karma_amount.text = "${basket!!.karma}"
+        karma_amount.text = "$toValue"
+    }
 
+    private fun changeKarma(updateTo: Int) {
+        setKarma(basketPojo!!.karma + updateTo)
+
+        db!!.collection("baskets").document(Totals.basketDoc!!.id)
+            .update(mapOf("karma" to (basketPojo!!.karma + updateTo)))
+            .addOnSuccessListener {
+                Log.d("SUCCESS", "SUCCESS")
+                val oldKarma = basketPojo!!.karma
+                val newKarma = oldKarma + updateTo
+                basketPojo!!.karma = newKarma
+
+            }.addOnFailureListener {
+                Log.e("FAIL", "FAIL $it")
+            }
     }
 
     private fun setupRecycler() {
         items_recycler.layoutManager = LinearLayoutManager(context!!)
-        items_recycler.adapter = MyRecyclerViewAdapter(context!!, basket!!.items)
+        items_recycler.adapter = MyRecyclerViewAdapter(context!!, basketPojo!!.items)
     }
 
     override fun getCornerRadius() = 32f

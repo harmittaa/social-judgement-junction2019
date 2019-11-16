@@ -90,6 +90,9 @@ class WallOfShameFragment : Fragment() {
     fun onClick(p0: View) {
         val basketPojo = adapter?.getItem(p0.tag as Int)
         Totals.basket = basketPojo!!
+        val basket = adapter?.getSnapshots()?.getSnapshot(p0.tag as Int)
+        Totals.basketDoc = basket
+
         val id = p0.id
 
         if (id == R.id.middleClicker) {
@@ -107,7 +110,6 @@ class WallOfShameFragment : Fragment() {
             else -> return
         }
 
-        val basket = adapter?.getSnapshots()?.getSnapshot(p0.tag as Int)
 
         if (basket != null) {
             db?.collection("baskets")?.document(basket.id)

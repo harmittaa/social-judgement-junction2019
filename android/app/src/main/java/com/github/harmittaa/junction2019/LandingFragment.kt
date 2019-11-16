@@ -117,10 +117,4 @@ class LandingFragment : Fragment() {
         }
         transactions_list.adapter = adapter
     }
-
-    fun dataFetched() {
-        amount_karma.text = "${Totals.totalKarma}"
-        amount_spent.text = "${Totals.getTotalSpent()} €"
-    }
-
 }
