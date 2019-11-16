@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         populateOveralls()
         setupRecyclerView()
+        blocker.bringToFront()
     }
 
     private fun populateOveralls() {
