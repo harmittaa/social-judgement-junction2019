@@ -18,7 +18,7 @@ class Totals() {
         }
 
         fun notifyListener() {
-            toNotify?.dataFetched()
+            //toNotify?.dataFetched()
         }
 
         fun getTotalSpent(): BigDecimal = BigDecimal(totalSpent).setScale(2, RoundingMode.HALF_EVEN)
