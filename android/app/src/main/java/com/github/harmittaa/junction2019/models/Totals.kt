@@ -7,6 +7,7 @@ import java.math.RoundingMode
 
 class Totals() {
     companion object {
+        var basket: Basket? = null
         var notifyThis: WallOfShameFragment? = null
 
 

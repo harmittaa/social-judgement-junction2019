@@ -5,6 +5,9 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
 import android.util.Log
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -41,5 +44,10 @@ class MainActivity : AppCompatActivity() {
             else -> Log.d("this", "else")
         }
         true
+    }
+
+
+    fun showFragment(fragment: SuperBottomSheetFragment) {
+        fragment.show(supportFragmentManager, "TAG")
     }
 }

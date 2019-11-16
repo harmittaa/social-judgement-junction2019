@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:6.1.0'
     implementation 'joda-time:joda-time:2.10.5'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.andrefrsousa:SuperBottomSheet:1.5.0'
 
 
 }

@@ -1,6 +1,7 @@
 package com.github.harmittaa.junction2019
 
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.github.harmittaa.junction2019.models.Basket
 import com.github.harmittaa.junction2019.models.Totals
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_wall_of_shame.*
 
 class WallOfShameFragment : Fragment() {
@@ -86,6 +88,16 @@ class WallOfShameFragment : Fragment() {
     }
 
     fun onClick(p0: View) {
+        val basketPojo = adapter?.getItem(p0.tag as Int)
+        Totals.basket = basketPojo!!
+
+        val mainActivity = activity as MainActivity
+        val fragment = PopupFragment()
+        mainActivity.showFragment(PopupFragment())
+        if (true) {
+            return
+        }
+
 
         val updateTo = when (p0.id) {
             R.id.thumbs_up -> 1
@@ -93,7 +105,6 @@ class WallOfShameFragment : Fragment() {
             else -> return
         }
 
-        val basketPojo = adapter?.getItem(p0.tag as Int)
         val basket = adapter?.getSnapshots()?.getSnapshot(p0.tag as Int)
 
         if (basket != null) {
