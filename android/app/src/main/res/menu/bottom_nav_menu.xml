@@ -4,12 +4,14 @@
         android:id="@+id/landing"
         android:icon="@drawable/ic_account_balance_wallet_24px"
         android:title="search" />
+
     <item
-        android:id="@+id/wall"
-        android:icon="@drawable/ic_data_usage_24px"
-        android:title="Stats" />
-    <item
-        android:id="@+id/stats"
+        android:id="@+id/wall_of_shame"
         android:icon="@drawable/ic_comment_24px"
         android:title="Wall" />
+
+    <item
+        android:id="@+id/stats"
+        android:icon="@drawable/ic_data_usage_24px"
+        android:title="Stats" />
 </menu>

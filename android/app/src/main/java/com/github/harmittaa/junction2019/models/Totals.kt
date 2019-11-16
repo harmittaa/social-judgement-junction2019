@@ -1,11 +1,15 @@
 package com.github.harmittaa.junction2019.models
 
 import com.github.harmittaa.junction2019.MainActivity
+import com.github.harmittaa.junction2019.WallOfShameFragment
 import java.math.BigDecimal
 import java.math.RoundingMode
 
 class Totals() {
     companion object {
+        var notifyThis: WallOfShameFragment? = null
+
+
         var toNotify: MainActivity? = null
         var totalSpent = 0.0
         var totalKarma = 0
