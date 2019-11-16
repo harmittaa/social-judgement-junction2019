@@ -35,7 +35,6 @@
 
     <TextView
         android:id="@+id/transaction_price"
-
         style="@style/MainText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/imageView2"
+            android:id="@+id/karma_points_tv"
             style="@style/MainText"
             android:layout_width="0dp"
             android:layout_height="0dp"
