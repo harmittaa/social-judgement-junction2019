@@ -82,7 +82,9 @@
         android:id="@+id/items_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:minHeight="100dp"
+        app:layout_constraintBottom_toTopOf="@id/seeeparator"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/purchase_details"
@@ -93,20 +95,20 @@
         android:id="@+id/seeeparator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="8dp"
         android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@id/negativewrap"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/items_recycler" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/negativewrap"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:background="@color/reddish"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/guideline6"
-        app:layout_constraintTop_toBottomOf="@id/seeeparator">
+        app:layout_constraintTop_toTopOf="@id/positivewrapper">
 
         <ImageView
             android:id="@+id/thumbs_down"
@@ -125,11 +127,13 @@
         android:id="@+id/positivewrapper"
         android:layout_width="0dp"
         android:layout_height="80dp"
+        android:layout_marginTop="16dp"
         android:background="@color/greenish"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/guideline6"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seeeparator">
+        app:layout_constraintTop_toBottomOf="@id/items_recycler"
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:id="@+id/thumbs_up"

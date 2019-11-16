@@ -17,6 +17,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline">
 
+        <View
+            android:translationZ="2dp"
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/shadow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/history_list" />
+
         <TextView
             android:id="@+id/RecyclerViewTop"
             style="@style/MainText"
@@ -45,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RecyclerViewTop"
-            tools:listitem="@layout/wall_item" />
+            tools:listitem="@layout/wall_item2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline

@@ -65,7 +65,7 @@ class LandingFragment : Fragment(), View.OnClickListener {
 
                     amount_karma.text = "$userKarma"
                     amount_spent.text = "$spentBigDecimal €"
-                    if (userKarma > 0) {
+                    if (userKarma >= 0) {
                         amount_karma.setTextColor(context?.resources?.getColor(R.color.green)!!)
 
                     } else {
