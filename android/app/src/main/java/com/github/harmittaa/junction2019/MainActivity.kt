@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, LandingFragment(), "landing").commit()
             R.id.wall_of_shame -> supportFragmentManager.beginTransaction()
                 .replace(R.id.container, WallOfShameFragment(), "wallofsame").commit()
-            R.id.stats -> Log.d("this", "wall")
+            R.id.stats -> supportFragmentManager.beginTransaction()
+                .replace(R.id.container, StatsFragment(), "wallofsame").commit()
 
             else -> Log.d("this", "else")
         }
