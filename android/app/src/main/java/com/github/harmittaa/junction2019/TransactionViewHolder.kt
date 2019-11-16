@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.github.harmittaa.junction2019.models.Basket
+import com.github.harmittaa.junction2019.models.Totals
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import java.text.DateFormat
@@ -16,15 +17,10 @@ class TransactionViewHolder(private val transactionRow: View) : RecyclerView.Vie
 ) {
 
     fun setBasket(basket: Basket) {
-        val dateTimeInUtc = DateTime("2011-07-19T18:23:20+0000", DateTimeZone.UTC)
-        val formatter = DateFormat.getDateTimeInstance(
-            DateFormat.SHORT,
-            DateFormat.SHORT,
-            Locale.getDefault()
-        )
-
+        Totals.addToTotal(basket.price)
+        Totals.addToTotalKarma(basket.karma)
         val dateTime = DateTime(basket.timestamp * 1000, DateTimeZone.UTC)
-
+        //Totals.notifyListener()
 
         // "${model.price} €
         val price: TextView = transactionRow.findViewById(R.id.transaction_price)
@@ -41,8 +37,6 @@ class TransactionViewHolder(private val transactionRow: View) : RecyclerView.Vie
         if (basket.karma > 0) {
             cs.background = transactionRow.context.resources.getDrawable(R.drawable.circle_outline_blue)
             karma.text = "${basket.karma}"
-
-            //cs.setBackgroundColor(transactionRow.context.getResources().getColor(R.color.niceWhite))
         } else {
             cs.background = transactionRow.context.resources.getDrawable(R.drawable.circle_outline)
             karma.text = "${basket.karma * -1}"

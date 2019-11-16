@@ -18,10 +18,10 @@
     </style>
 
     <style name="HeaderText">
-        <item name="android:textStyle"></item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/roboto_condensed_bold</item>
         <item name="android:textColor">@color/niceWhite</item>
     </style>
-
 
 
 </resources>
