@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#333597</color>
+    <color name="colorPrimaryLighter">#3F41A5</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#5E5CD8</color>
     <color name="niceWhite">#F5F5FF</color>
@@ -10,4 +11,5 @@
     <color name="green">#30D7AE</color>
     <color name="greenish">#9930D7AE</color>
     <color name="babyblue">#DDEBFD</color>
+    <color name="invisible">#00DDEBFD</color>
 </resources>
