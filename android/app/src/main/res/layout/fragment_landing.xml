@@ -24,14 +24,13 @@
 
     <ImageView
         android:id="@+id/status_image"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:padding="20dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/constraintLayout"
         app:layout_constraintLeft_toRightOf="@id/overview"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/success" />
+        app:srcCompat="@drawable/no_balls_scale" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/overview"
@@ -140,5 +139,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.28" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bebas"
+        android:text="Social Judgement"
+        android:textColor="#2D527C"
+        android:textSize="35sp"
+        app:layout_constraintLeft_toRightOf="@id/overview"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
