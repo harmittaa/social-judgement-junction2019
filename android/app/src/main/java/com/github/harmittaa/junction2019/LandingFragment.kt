@@ -47,7 +47,7 @@ class LandingFragment : Fragment() {
     }
 
     private fun populateOveralls() {
-        if (!lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {return}
+        //if (!lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {return}
         db?.collection("baskets")?.whereEqualTo("user", userId)?.get()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {

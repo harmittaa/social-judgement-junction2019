@@ -1,5 +1,6 @@
 package com.github.harmittaa.junction2019
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,8 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.google.firebase.firestore.Query
 import kotlin.random.Random
+
+
 
 
 var userId = "AYD1wNUgj31szhrVr1At"
@@ -60,18 +63,25 @@ open class StatsFragment : Fragment() {
         val prices = mutableListOf<BarEntry>()
         val karmas = mutableListOf<BarEntry>()
         for (x in 0 until baskets.size) {
-            prices.add(BarEntry(x.toFloat(), (baskets[x].price + Random.nextInt(0, 100)).toFloat()))
+            if (x % 2 == 0) {
+                prices.add(BarEntry(x.toFloat(), (baskets[x].price + Random.nextInt(0, 100)).toFloat()))
+                karmas.add(BarEntry(x.toFloat()+1, (baskets[x].price + Random.nextInt(0, 100)).toFloat()))
+            } else {
+                prices.add(BarEntry(x.toFloat()+1, (baskets[x].price + Random.nextInt(0, 100)).toFloat()))
+                karmas.add(BarEntry(x.toFloat(), (baskets[x].price + Random.nextInt(0, 100)).toFloat()))
+            }
             //karmas.add(BarEntry(baskets[x].karma.toFloat(), x.toFloat()))
         }
+        // 48, 215, 174
         val dataSet = BarDataSet(prices, "baskets")
-        dataSet.setColor(R.color.green)
+        dataSet.setColor(Color.rgb(48, 214, 174))
+
+
         val dataSet2 = BarDataSet(karmas, "karmas")
-        dataSet.setColor(R.color.red)
-        //val barData = BarData(dataSet, dataSet2)
-        val barData = BarData(dataSet)
-        //barData.setBarWidth(5f);
+        dataSet.setColor(Color.rgb(230, 95, 64))
+
+        val barData = BarData(dataSet, dataSet2)
         barchart!!.data = barData
-        //barchart!!.groupBars(0f, 0.8f, 0.1f)
     }
 
     private fun generateBarData(dataSets: Int, range: Float, count: Int): BarData {
