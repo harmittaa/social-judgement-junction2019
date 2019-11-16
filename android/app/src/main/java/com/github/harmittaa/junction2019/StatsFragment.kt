@@ -9,13 +9,13 @@ import androidx.fragment.app.Fragment
 import com.github.harmittaa.junction2019.models.Basket
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_stats.*
-import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.google.firebase.firestore.Query
+import kotlin.random.Random
 
 
 var userId = "AYD1wNUgj31szhrVr1At"
@@ -54,27 +54,24 @@ open class StatsFragment : Fragment() {
                     Log.w("", "Error getting documents.", task.exception)
                 }
             }
-
-
-        barchart!!.description.isEnabled = false;
-
-        val l = barchart!!.getLegend()
-
-        val leftAxis = barchart!!.getAxisLeft()
-        leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
-
-        barchart!!.getAxisRight().isEnabled = false
-
-        val xAxis = barchart!!.getXAxis()
-        xAxis.isEnabled = false
-
     }
 
     private fun populateGraph() {
-        val entries = baskets.map { BarEntry(it.price.toFloat(), it.karma.toFloat()) }
-        val dataSet = BarDataSet(entries, "Buyss")
+        val prices = mutableListOf<BarEntry>()
+        val karmas = mutableListOf<BarEntry>()
+        for (x in 0 until baskets.size) {
+            prices.add(BarEntry(x.toFloat(), (baskets[x].price + Random.nextInt(0, 100)).toFloat()))
+            //karmas.add(BarEntry(baskets[x].karma.toFloat(), x.toFloat()))
+        }
+        val dataSet = BarDataSet(prices, "baskets")
+        dataSet.setColor(R.color.green)
+        val dataSet2 = BarDataSet(karmas, "karmas")
+        dataSet.setColor(R.color.red)
+        //val barData = BarData(dataSet, dataSet2)
         val barData = BarData(dataSet)
+        //barData.setBarWidth(5f);
         barchart!!.data = barData
+        //barchart!!.groupBars(0f, 0.8f, 0.1f)
     }
 
     private fun generateBarData(dataSets: Int, range: Float, count: Int): BarData {

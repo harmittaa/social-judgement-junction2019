@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/blockerView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="@color/colorPrimary"

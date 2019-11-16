@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -46,6 +47,7 @@ class LandingFragment : Fragment() {
     }
 
     private fun populateOveralls() {
+        if (!lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {return}
         db?.collection("baskets")?.whereEqualTo("user", userId)?.get()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
