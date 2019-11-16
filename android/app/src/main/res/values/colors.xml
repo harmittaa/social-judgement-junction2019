@@ -3,6 +3,7 @@
     <color name="colorPrimary">#333597</color>
     <color name="colorPrimaryLighter">#3F41A5</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDarkInvisible">#1000574B</color>
     <color name="colorAccent">#5E5CD8</color>
     <color name="niceWhite">#F5F5FF</color>
     <color name="highlightedBlue">#2573FA</color>
@@ -12,5 +13,7 @@
     <color name="greenish">#5030D7AE</color>
     <color name="reddish">#50E65F40</color>
     <color name="babyblue">#DDEBFD</color>
+    <color name="babygreen">#DDFDE1</color>
+    <color name="babyred">#FDDDDD</color>
     <color name="invisible">#00DDEBFD</color>
 </resources>

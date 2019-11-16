@@ -41,6 +41,7 @@ class LandingFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         Totals.notifyThis2 = this
     }
+
     override fun onStart() {
         super.onStart()
         populateOveralls()
@@ -50,7 +51,9 @@ class LandingFragment : Fragment(), View.OnClickListener {
 
     private fun populateOveralls() {
         val state = lifecycle.currentState
-        if (!state.isAtLeast(Lifecycle.State.CREATED)) {return}
+        if (!state.isAtLeast(Lifecycle.State.CREATED)) {
+            return
+        }
         db?.collection("baskets")?.whereEqualTo("user", userId)?.get()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -67,9 +70,13 @@ class LandingFragment : Fragment(), View.OnClickListener {
                     amount_spent.text = "$spentBigDecimal €"
                     if (userKarma >= 0) {
                         amount_karma.setTextColor(context?.resources?.getColor(R.color.green)!!)
+                        status_image.setImageDrawable(context!!.getDrawable(R.drawable.success))
+                        //landing_background.setBackgroundColor(context!!.getColor(R.color.babygreen))
 
                     } else {
                         amount_karma.setTextColor(context?.resources?.getColor(R.color.red)!!)
+                        status_image.setImageDrawable(context!!.getDrawable(R.drawable.no_bueno))
+                        //landing_background.setBackgroundColor(context!!.getColor(R.color.babyred))
 
                     }
 

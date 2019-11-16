@@ -58,8 +58,10 @@ class PopupFragment : SuperBottomSheetFragment() {
     private fun setKarma(toValue: Int) {
         if (toValue < 0) {
             karma_wrapper.background = context!!.getDrawable(R.drawable.round_corners_red)
+            popup_status.setImageDrawable(context!!.getDrawable(R.drawable.no_bueno))
         } else {
             karma_wrapper.background = context!!.getDrawable(R.drawable.round_corners_green)
+            popup_status.setImageDrawable(context!!.getDrawable(R.drawable.success))
         }
         karma_amount.text = "$toValue"
     }

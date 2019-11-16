@@ -14,7 +14,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/popup_status"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="24dp"
@@ -22,7 +22,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/person" />
+        app:srcCompat="@drawable/order_done" />
 
     <TextView
         android:id="@+id/purchase_title"
@@ -35,7 +35,7 @@
         android:text="Purchase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/popup_status" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/karma_wrapper"
@@ -96,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimaryDarkInvisible"
         app:layout_constraintBottom_toTopOf="@id/negativewrap"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
