@@ -8,5 +8,11 @@ The complete project repository including the web interface and Firestore popula
 
 Spaghetti code, but some features:
 
-- Nice UI
-- Firebase firestore integration
++ Nice UI
++ Firebase firestore integration
+
+- Code on critical spaghetti levels 
+
+## Screenshots
+
+![All screens](https://raw.githubusercontent.com/harmittaa/social-judgement-junction2019/master/screens/all.png)
